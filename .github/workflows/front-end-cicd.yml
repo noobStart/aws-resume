@@ -9,13 +9,13 @@ jobs:
     deploy:
         runs-on: ubuntu-latest
         steps:
-            - uses: action/checkout@master
-            - uses: jakejarvis/s3-sync-action@master
-            with:
-                args: --acl public-read --follow-symlinks --delete
-            env:
-                AWS_S3_BUCKET: ${{ secret.AWS_S3_BUCKET }}
-                AWS_ACCESS_KEY_ID: ${{ secret.AWS_ACCESS_KEY_ID }}
-                AWS_SECRET_KEY_ID: ${{ secret.AWS_SECRET_KEY_ID}}
-                AWS_REGION: 'ap-southeast-1'
-                SOURCE_DIR: 'Cloud Resume'
+        - uses: action/checkout@master
+        - uses: jakejarvis/s3-sync-action@master
+        with:
+            args: --acl public-read --follow-symlinks --delete
+        env:
+            AWS_S3_BUCKET: ${{ secret.AWS_S3_BUCKET }}
+            AWS_ACCESS_KEY_ID: ${{ secret.AWS_ACCESS_KEY_ID }}
+            AWS_SECRET_KEY_ID: ${{ secret.AWS_SECRET_KEY_ID}}
+            AWS_REGION: 'ap-southeast-1'
+            SOURCE_DIR: 'Cloud Resume'
