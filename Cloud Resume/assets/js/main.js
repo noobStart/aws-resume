@@ -6,38 +6,6 @@
 * License: https://bootstrapmade.com/license/
 */
 
-// Generate or retrieve a unique visitor ID
-function getVisitorId() {
-  let visitorId = localStorage.getItem('visitorId');
-  if (!visitorId) {
-      visitorId = 'visitor_' + Math.random().toString(36).substr(2, 9);
-      localStorage.setItem('visitorId', visitorId);
-  }
-  return visitorId;
-}
-
-// Update the counter
-const counter = document.querySelector(".counter-visitors");
-
-async function updateCounter() {
-  const visitorId = getVisitorId();
-  try {
-      const response = await fetch("https://gis4vhx4n3npwlfj6limyf6p5y0qzdrn.lambda-url.ap-southeast-1.on.aws/", {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ visitor_id: visitorId })
-      });
-      const data = await response.json();
-      counter.innerHTML = `<i class="bx bx-user"></i> <span> Visitors: ${data}</span>`;
-  } catch (error) {
-      console.error("Error updating counter:", error);
-  }
-}
-
-updateCounter();
-
 
 
 
@@ -57,14 +25,14 @@ updateCounter();
   }
 
   // counter code
-  // const counter = document.querySelector(".counter-visitors");
-  // async function updateCounter() {
-  //       let response =await fetch("https://gis4vhx4n3npwlfj6limyf6p5y0qzdrn.lambda-url.ap-southeast-1.on.aws/");
-  //       let data = await response.json();
-  //       counter.innerHTML = `<i class="bx bx-user"></i> <span> Visitors: ${data}</span>`;
-  //       //counter.innerHTML = ` Visitors: ${data}`;
-  // }
-  // updateCounter();
+  const counter = document.querySelector(".counter-visitors");
+  async function updateCounter() {
+        let response =await fetch("https://gis4vhx4n3npwlfj6limyf6p5y0qzdrn.lambda-url.ap-southeast-1.on.aws/");
+        let data = await response.json();
+        counter.innerHTML = `<i class="bx bx-user"></i> <span> Visitors: ${data}</span>`;
+        //counter.innerHTML = ` Visitors: ${data}`;
+  }
+  updateCounter();
 
   /**
    * Easy event listener function
