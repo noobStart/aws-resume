@@ -21,13 +21,16 @@
 #           AWS_REGION: 'ap-southeast-1'
 #           SOURCE_DIR: 'Cloud Resume'
 
-
+############
 name: Upload website to S3
 
 on:
   push:
     branches:
       - main
+      
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
   deploy:
@@ -44,7 +47,7 @@ jobs:
 
       - name: Sync files to S3
         run: |
-          aws s3 sync "Cloud Resume" "s3://wmuzaffarharun" --acl public-read --delete
+          aws s3 sync "Cloud Resume" "s3://wmuzaffar-590183817705-ap-southeast-5-an" --acl public-read --delete
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
